@@ -1,0 +1,18 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.yteron.simple_rock_climbing.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "mixins.SRC.refmap.json",
+  "mixins": [
+    "PoseMixin",
+    "PlayerPoseMixin"
+  ],
+  "client": [
+    "PlayerPickRangeMixin",
+    "PlayerModelMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
