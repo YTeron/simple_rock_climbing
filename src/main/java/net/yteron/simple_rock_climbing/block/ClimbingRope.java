@@ -24,7 +24,22 @@ import javax.annotation.Nullable;
 //import net.yteron.nucrad.radiation.ChunkRaditonManager;
 
 public class ClimbingRope extends Block {
-    private static final VoxelShape SHAPE = Block.box(6.0D, 0.0D, 6.0D, 10.0D, 16.0D, 10.0D);
+    private static final VoxelShape NORTH_SHAPE = Block.box(
+            0.0D, 0.0D, 14.0D,
+            16.0D, 16.0D, 16.0D
+    );
+    private static final VoxelShape SOUTH_SHAPE = Block.box(
+            0.0D, 0.0D, 0.0D,
+            16.0D, 16.0D, 2.0D
+    );
+    private static final VoxelShape WEST_SHAPE = Block.box(
+            14.0D, 0.0D, 0.0D,
+            16.0D, 16.0D, 16.0D
+    );
+    private static final VoxelShape EAST_SHAPE = Block.box(
+            0.0D, 0.0D, 0.0D,
+            2.0D, 16.0D, 16.0D
+    );
     private static final Properties PROPERTIES = Properties.copy(Blocks.IRON_BLOCK)
             .harvestLevel(0)
             .strength(5.0f, 10.0f)
@@ -83,7 +98,13 @@ public class ClimbingRope extends Block {
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader world,
                                BlockPos pos, ISelectionContext context) {
-        return SHAPE;
+        switch (state.getValue(BlockStateProperties.HORIZONTAL_FACING)) {
+            case NORTH: return NORTH_SHAPE;
+            case SOUTH: return SOUTH_SHAPE;
+            case WEST:  return WEST_SHAPE;
+            case EAST:  return EAST_SHAPE;
+            default:    return NORTH_SHAPE;
+        }
     }
     @Override
     protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {

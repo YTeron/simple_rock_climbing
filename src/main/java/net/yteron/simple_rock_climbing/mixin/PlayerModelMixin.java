@@ -14,7 +14,7 @@ public class PlayerModelMixin {
     private void onSetupAnim(LivingEntity player, float limbSwing, float limbSwingAmount,
                              float ageInTicks, float netHeadYaw, float headPitch,
                              CallbackInfo ci) {
-        if (player.getPose().name().equals("CLIMBING")) {
+        if (player.getPose().name().equals("CLIMBING_ROPE")) {
             PlayerModel<LivingEntity> model = (PlayerModel<LivingEntity>) (Object) this;
             model.body.xRot = (float) Math.toRadians(5);
             model.head.xRot = (float) Math.toRadians(-30);
@@ -34,6 +34,8 @@ public class PlayerModelMixin {
             model.leftSleeve.copyFrom(model.leftArm);
             model.rightSleeve.copyFrom(model.rightArm);
             model.jacket.copyFrom(model.body);
+
+            model.body.yRot = 0;
         }
 
     }

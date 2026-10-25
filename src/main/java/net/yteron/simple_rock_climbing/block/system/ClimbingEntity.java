@@ -33,16 +33,16 @@ public class ClimbingEntity extends Entity {
 
         switch (facing){
             case NORTH:
-                z = pos.getZ() + 0.2D;
+                z = pos.getZ() + 0.5D;
                 break;
             case SOUTH:
-                z = pos.getZ() + 0.8D;
+                x = pos.getX()  +0.5D;
                 break;
             case WEST:
-                x = pos.getX() + 0.2D;
+                x = pos.getX() +0.5D;
                 break;
             case EAST:
-                x = pos.getX() + 0.8D;
+                x = pos.getX() +0.5D;
                 break;
             default:
                 break;
@@ -70,13 +70,13 @@ public class ClimbingEntity extends Entity {
     }
     public Pose getPose() {
         if (this.isPassenger() && this.getVehicle() instanceof LivingEntity) {
-            return Pose.valueOf("CLIMBING");
+            return Pose.valueOf("CLIMBING_ROPE");
         }
         return super.getPose();
     }
     @Override
     public ActionResultType interact(PlayerEntity player, Hand hand) {
-        player.setForcedPose(Pose.valueOf("CLIMBING"));
+        player.setForcedPose(Pose.valueOf("CLIMBING_ROPE"));
         if (!this.getCommandSenderWorld().isClientSide) {
             player.startRiding(this);
         }
@@ -88,7 +88,7 @@ public class ClimbingEntity extends Entity {
     protected void addPassenger(Entity p_184200_1_) {
         super.addPassenger(p_184200_1_);
         if (p_184200_1_ instanceof PlayerEntity) {
-            ((PlayerEntity) p_184200_1_).setForcedPose(Pose.valueOf("CLIMBING"));
+            ((PlayerEntity) p_184200_1_).setForcedPose(Pose.valueOf("CLIMBING_ROPE"));
             System.out.println(((PlayerEntity) p_184200_1_).getPose());
         }
     }
@@ -117,7 +117,12 @@ public class ClimbingEntity extends Entity {
     public void positionRider(Entity p_184232_1_) {
         super.positionRider(p_184232_1_);
         if (p_184232_1_ instanceof PlayerEntity){
-            ((PlayerEntity)p_184232_1_).setForcedPose(Pose.valueOf("CLIMBING"));
+            ((PlayerEntity)p_184232_1_).setForcedPose(Pose.valueOf("CLIMBING_ROPE"));
         }
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
     }
 }

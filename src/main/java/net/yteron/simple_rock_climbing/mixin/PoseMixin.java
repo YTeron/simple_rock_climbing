@@ -1,10 +1,7 @@
 package net.yteron.simple_rock_climbing.mixin;
 
 import net.minecraft.entity.Pose;
-import org.spongepowered.asm.mixin.Final;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Mutable;
-import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.gen.Invoker;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -16,8 +13,9 @@ import java.util.Arrays;
 @Mixin(Pose.class)
 public abstract class PoseMixin {
 
+
+
     @Shadow
-    @Final
     @Mutable
     private static Pose[] $VALUES;
 
@@ -32,9 +30,11 @@ public abstract class PoseMixin {
             return;
         }
 
-        Pose climbing = invokeInit("CLIMBING", $VALUES.length);
+        Pose climbingRope = invokeInit("CLIMBING_ROPE", $VALUES.length);
+        Pose climbingProjections = invokeInit("CLIMBING_PROJECTIONS", $VALUES.length + 1);
         ArrayList<Pose> values = new ArrayList<>(Arrays.asList($VALUES));
-        values.add(climbing);
+        values.add(climbingRope);
+        values.add(climbingProjections);
         $VALUES = values.toArray(new Pose[0]);
     }
 }
