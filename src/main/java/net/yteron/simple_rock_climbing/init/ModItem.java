@@ -11,8 +11,12 @@ import net.yteron.simple_rock_climbing.SRC;
 public class ModItem {
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, SRC.MOD_ID);
+    public static final RegistryObject<Item> PROJECTIONS;
     public static final RegistryObject<Item> CLIMBING_ROPE;
     static {
+        PROJECTIONS = ITEMS.register("projections_base",
+                () -> new BlockItem(ModBlock.PROJECTIONS.get(),
+                        new Item.Properties().tab(ModTab.TAB)));
         CLIMBING_ROPE = ITEMS.register("climbing_rope",
                 () -> new BlockItem(ModBlock.CLIMBING_ROPE.get(),
                         new Item.Properties().tab(ModTab.TAB)));

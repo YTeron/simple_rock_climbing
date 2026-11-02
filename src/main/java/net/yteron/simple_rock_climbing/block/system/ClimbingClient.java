@@ -17,6 +17,7 @@ public class ClimbingClient {
     public static void onFMLCLientSetup(FMLClientSetupEvent event)
     {
         RenderingRegistry.registerEntityRenderingHandler(ModClimbing.SIT_ENTITY_TYPE.get(), EmptyRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModClimbing.ROPE_ENTITY_TYPE.get(), RopeRender::new);
     }
 
     private static class EmptyRenderer extends EntityRenderer<ClimbingEntity>
@@ -34,6 +35,25 @@ public class ClimbingClient {
 
         @Override
         public ResourceLocation getTextureLocation(ClimbingEntity p_110775_1_) {
+            return null;
+        }
+    }
+
+    private static class RopeRender extends EntityRenderer<RopeEntity>
+    {
+        protected RopeRender(EntityRendererManager renderManager)
+        {
+            super(renderManager);
+        }
+
+        @Override
+        public boolean shouldRender(RopeEntity entity, ClippingHelper camera, double camX, double camY, double camZ)
+        {
+            return false;
+        }
+
+        @Override
+        public ResourceLocation getTextureLocation(RopeEntity p_110775_1_) {
             return null;
         }
     }

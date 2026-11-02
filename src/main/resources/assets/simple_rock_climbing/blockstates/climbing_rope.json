@@ -1,8 +1,5 @@
 {
   "variants": {
-    "facing=north": { "model": "simple_rock_climbing:block/projections_base", "y": 0 },
-    "facing=east": { "model":  "simple_rock_climbing:block/projections_base", "y": 90 },
-    "facing=south": { "model": "simple_rock_climbing:block/projections_base", "y": 180 },
-    "facing=west": { "model":  "simple_rock_climbing:block/projections_base", "y": 270 }
+    "": { "model": "simple_rock_climbing:block/climbing_rope" }
   }
 }

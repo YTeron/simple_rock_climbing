@@ -23,7 +23,7 @@ import net.yteron.simple_rock_climbing.block.system.ClimbingEntity;
 import javax.annotation.Nullable;
 //import net.yteron.nucrad.radiation.ChunkRaditonManager;
 
-public class ClimbingRope extends Block {
+public class ProjectionsBase extends Block {
     private static final VoxelShape NORTH_SHAPE = Block.box(
             0.0D, 0.0D, 14.0D,
             16.0D, 16.0D, 16.0D
@@ -49,7 +49,7 @@ public class ClimbingRope extends Block {
             .lightLevel((state) -> 0)
             .dynamicShape()
             .sound(SoundType.WOOL);
-    public ClimbingRope() {
+    public ProjectionsBase() {
         super(PROPERTIES);
         this.registerDefaultState(
                 this.stateDefinition.any()

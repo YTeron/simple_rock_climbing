@@ -16,6 +16,7 @@ import net.minecraftforge.registries.ObjectHolder;
 import net.yteron.simple_rock_climbing.SRC;
 import net.yteron.simple_rock_climbing.block.system.ClimbingEntity;
 import net.yteron.simple_rock_climbing.SRC;
+import net.yteron.simple_rock_climbing.block.system.RopeEntity;
 
 
 public class ModClimbing {
@@ -24,11 +25,19 @@ public class ModClimbing {
     public static final RegistryObject<EntityType<ClimbingEntity>> SIT_ENTITY_TYPE =
             ENTITY_TYPES.register("entity_climbing",
                     () -> EntityType.Builder.<ClimbingEntity>of(ClimbingEntity::new, EntityClassification.MISC)
-                            .setCustomClientFactory(ClimbingEntity::new) // <-- Вот так правильно и без ошибок!
+                            .setCustomClientFactory(ClimbingEntity::new)
                             .setTrackingRange(256)
                             .setUpdateInterval(20)
                             .sized(0.0001F, 0.0001F)
                             .build(SRC.MOD_ID + ":entity_climbing"));
+    public static final RegistryObject<EntityType<RopeEntity>> ROPE_ENTITY_TYPE =
+            ENTITY_TYPES.register("rope_climbing",
+                    () -> EntityType.Builder.<RopeEntity>of(RopeEntity::new, EntityClassification.MISC)
+                            .setCustomClientFactory(RopeEntity::new)
+                            .setTrackingRange(256)
+                            .setUpdateInterval(20)
+                            .sized(0.0001F, 0.0001F)
+                            .build(SRC.MOD_ID + ":rope_climbing"));
 
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);
